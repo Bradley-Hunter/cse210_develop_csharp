@@ -14,7 +14,7 @@ namespace unit03_jumper.Game
     public class Word
     {
         public List<string> words = new List<string>()
-        {"apple", "bread", "stove", "pears", "raptor", "hills"};
+        {"frame", "bread", "stove", "pears", "drags", "clock"};
         public string word;
         private List<char> guesses = new List<char>();
         private List<char> hint = new List<char>()
@@ -40,24 +40,26 @@ namespace unit03_jumper.Game
             int letterIndex = 0;
             bool found = false;
 
-            if (! found && ! first_run)
+            if (! first_run)
             {
                 foreach(char letter in word)
                 {
-                    if (guesses[guesses.Count - 1] == letter)
+                    if (! found && guesses[guesses.Count - 1] == letter)
                     {
                         found = true;
                         hint[letterIndex * 2] = letter;
                     }
                     letterIndex += 1;
                 }
-                jumper.UpdateIncorrectGuesses();
+                if (! found)
+                {
+                    jumper.UpdateIncorrectGuesses();
+                }
             }
             else
             {
                 first_run = false;
             }
-            Console.WriteLine(first_run);
         }
 
         /// <summary>
