@@ -56,7 +56,7 @@ namespace unit02_hilo.Game
             if (isPlaying)
             {
                 Console.Write($"\nThe card is {cards[currentCard].value}");
-                Console.Write("Higher or Lower? [h/l] ");
+                Console.Write("\nHigher or Lower? [h/l] ");
                 highLow = Console.ReadLine();
             }
         }
