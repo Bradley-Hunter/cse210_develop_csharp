@@ -35,7 +35,7 @@ namespace unit03_jumper.Game
                 {
                     string hint = string.Join("",word.GetHint(jumper));
                     terminalService.WriteText(hint);
-                    Console.Write("\n");
+                    terminalService.WriteText("");
                     jumper.DisplayJumper();
                     firstRun = false;
                 }
@@ -70,7 +70,7 @@ namespace unit03_jumper.Game
         {
             string hint = string.Join("",word.GetHint(jumper));
             terminalService.WriteText(hint);
-            Console.WriteLine("\n");
+            terminalService.WriteText("");
             jumper.DisplayJumper();
             if (!(word.IsFound()) || jumper.GetDead())
             {
