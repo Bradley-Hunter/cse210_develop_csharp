@@ -72,7 +72,7 @@ namespace unit03_jumper.Game
             terminalService.WriteText(hint);
             terminalService.WriteText("");
             jumper.DisplayJumper();
-            if (!(word.IsFound()) || jumper.GetDead())
+            if (word.IsFound() || jumper.GetDead())
             {
                 isPlaying = false;
             }

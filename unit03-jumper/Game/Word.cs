@@ -17,8 +17,7 @@ namespace unit03_jumper.Game
         {"frame", "bread", "stove", "pears", "drags", "clock"};
         public string word;
         private List<char> guesses = new List<char>();
-        private List<char> hint = new List<char>()
-        {'_', ' ', '_', ' ', '_', ' ', '_', ' ', '_'};
+        private List<char> hint = new List<char>();
         bool first_run = true;
 
         Guess hi = new Guess();
@@ -30,6 +29,11 @@ namespace unit03_jumper.Game
         {
             Random random = new Random();
             word = words[random.Next(6)];
+            for (int i = 0; i < word.Length; i++)
+            {
+                hint.Add('_');
+                hint.Add(' ');
+            }
         }
 
         /// <summary>
@@ -82,11 +86,24 @@ namespace unit03_jumper.Game
 
             foreach(char character in hint)
             {
-                if(character == '_')
+                if(character != '_')
                 {
                     found = true;
                 }
+                else
+                {
+                    found = false;
+                }
             }
+            if(found && ! (hint.Contains('_')))
+            {
+                found = true;
+            }
+            else
+            {
+                found = false;
+            }
+
             return found;
         }
 

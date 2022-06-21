@@ -17,6 +17,7 @@ namespace unit03_jumper.Game
         private List<string> jumperDead = new List<string>()
         {@"   X", @"  /|\", @"  / \", "", @"^^^^^^^"};
         bool dead = false;
+        private TerminalService terminalService = new TerminalService();
 
         /// <summary>
         /// Constructs a new instance of Seeker.
@@ -36,14 +37,14 @@ namespace unit03_jumper.Game
             {
                 for(int i = numIncorrectGuesses; i < jumperAlive.Count; i++)
                 {
-                    Console.WriteLine(jumperAlive[i]);
+                    terminalService.WriteText(jumperAlive[i]);
                 }
             }
             else 
             {
                 foreach(string line in jumperDead)
                 {
-                    Console.WriteLine(line);
+                    terminalService.WriteText(line);
                 }
                 UpdateDead(true);
             }
