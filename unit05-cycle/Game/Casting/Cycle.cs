@@ -11,13 +11,14 @@ namespace Unit05.Game.Casting
     public class Cycle : Actor
     {
         private List<Actor> segments = new List<Actor>();
+        private int startPoint;
 
         /// <summary>
         /// Constructs a new instance of a Cycle.
         /// </summary>
-        public Cycle()
+        public Cycle(int startPoint)
         {
-            PrepareBody();
+            PrepareBody(startPoint);
         }
 
         /// <summary>
@@ -98,9 +99,9 @@ namespace Unit05.Game.Casting
         /// <summary>
         /// Prepares the cycle body for moving.
         /// </summary>
-        private void PrepareBody()
+        private void PrepareBody(int startPoint)
         {
-            int x = Constants.MAX_X / 2;
+            int x = startPoint;
             int y = Constants.MAX_Y / 2;
 
             for (int i = 0; i < Constants.SNAKE_LENGTH; i++)
