@@ -20,7 +20,7 @@ namespace Unit05
         {
             // create the cast
             Cast cast = new Cast();
-            cast.AddActor("food", new Food());
+            // cast.AddActor("food", new Food());
             cast.AddActor("cycles", new Cycle(300));
             cast.AddActor("cycles", new Cycle(600));
             cast.AddActor("score", new Score());

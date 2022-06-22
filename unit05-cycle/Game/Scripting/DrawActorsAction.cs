@@ -54,11 +54,11 @@ namespace Unit05.Game.Scripting
 
 
 
-            Actor food = cast.GetFirstActor("food");
+            // Actor food = cast.GetFirstActor("food");
             List<Actor> messages = cast.GetActors("messages");
             
             videoService.ClearBuffer();
-            videoService.DrawActor(food);
+            // videoService.DrawActor(food);
             videoService.DrawActors(messages);
             videoService.FlushBuffer();
         }
