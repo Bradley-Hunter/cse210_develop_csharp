@@ -53,6 +53,33 @@ namespace Unit05.Game.Scripting
             Cycle snake = (Cycle)cast.GetFirstActor("cycles");
             snake.TurnHead(direction);
 
+            // left
+            if (keyboardService.IsKeyDown("j"))
+            {
+                direction = new Point(-Constants.CELL_SIZE, 0);
+            }
+
+            // right
+            if (keyboardService.IsKeyDown("l"))
+            {
+                direction = new Point(Constants.CELL_SIZE, 0);
+            }
+
+            // up
+            if (keyboardService.IsKeyDown("i"))
+            {
+                direction = new Point(0, -Constants.CELL_SIZE);
+            }
+
+            // down
+            if (keyboardService.IsKeyDown("k"))
+            {
+                direction = new Point(0, Constants.CELL_SIZE);
+            }
+
+            snake = (Cycle)cast.GetSecondActor("cycles");
+            snake.TurnHead(direction);
+
         }
     }
 }
