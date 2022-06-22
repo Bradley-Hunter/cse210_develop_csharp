@@ -39,18 +39,18 @@ namespace Unit05.Game.Scripting
             videoService.DrawActors(segments);
             }
 
-            Actor score1 = cast.GetFirstActor("score");
-            Actor score2 = cast.GetSecondActor("score");
+            // Actor score1 = cast.GetFirstActor("score");
+            // Actor score2 = cast.GetSecondActor("score");
 
-            List<Actor> scores = new List<Actor>();
-            scores.Add(score1);
-            scores.Add(score2);
+            // List<Actor> scores = new List<Actor>();
+            // scores.Add(score1);
+            // scores.Add(score2);
 
-            foreach(Score score in scores)
-            {
-            videoService.DrawActor(score);
+            // foreach(Score score in scores)
+            // {
+            // videoService.DrawActor(score);
             
-            }
+            // }
 
 
 
