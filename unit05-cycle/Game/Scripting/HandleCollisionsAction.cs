@@ -17,6 +17,7 @@ namespace Unit05.Game.Scripting
     public class HandleCollisionsAction : Action
     {
         private bool isGameOver = false;
+        private int timeThrough = 0;
 
         /// <summary>
         /// Constructs a new instance of HandleCollisionsAction.
@@ -30,7 +31,8 @@ namespace Unit05.Game.Scripting
         {
             if (isGameOver == false)
             {
-                HandleFoodCollisions(cast);
+                // HandleFoodCollisions(cast);
+                HandleBetweenCyclesCollisions(cast);
                 HandleSegmentCollisions(cast);
                 HandleGameOver(cast);
             }
@@ -45,7 +47,7 @@ namespace Unit05.Game.Scripting
             Cycle snake = (Cycle)cast.GetFirstActor("cycles");
             Score score = (Score)cast.GetFirstActor("score");
             Food food = (Food)cast.GetFirstActor("food");
-            
+
             if (snake.GetHead().GetPosition().Equals(food.GetPosition()))
             {
                 int points = food.GetPoints();
@@ -53,6 +55,32 @@ namespace Unit05.Game.Scripting
                 score.AddPoints(points);
                 food.Reset();
             }
+        }
+
+        private void HandleBetweenCyclesCollisions(Cast cast)
+        {
+            Cycle cycle1 = (Cycle)cast.GetFirstActor("cycles");
+            Cycle cycle2 = (Cycle)cast.GetSecondActor("cycles");
+            Actor head1 = cycle1.GetHead();
+            Actor head2 = cycle2.GetHead();
+            List<Actor> segments1 = cycle1.GetSegments();
+            List<Actor> segments2 = cycle2.GetSegments();
+            foreach (Actor segment in segments1)
+            {
+                if (segment.GetPosition().Equals(head2.GetPosition()))
+                {
+                    isGameOver = true;
+                }
+            }
+
+            foreach (Actor segment in segments2)
+            {
+                if (segment.GetPosition().Equals(head1.GetPosition()))
+                {
+                    isGameOver = true;
+                }
+            }
+
         }
 
         /// <summary>
@@ -72,15 +100,29 @@ namespace Unit05.Game.Scripting
                     isGameOver = true;
                 }
             }
+
+            snake = (Cycle)cast.GetSecondActor("cycles");
+            head = snake.GetHead();
+            body = snake.GetBody();
+
+            foreach (Actor segment in body)
+            {
+                if (segment.GetPosition().Equals(head.GetPosition()))
+                {
+                    isGameOver = true;
+                }
+            }
         }
 
         private void HandleGameOver(Cast cast)
         {
             if (isGameOver == true)
             {
-                Cycle snake = (Cycle)cast.GetFirstActor("cycles");
-                List<Actor> segments = snake.GetSegments();
-                Food food = (Food)cast.GetFirstActor("food");
+                Cycle cycle1 = (Cycle)cast.GetFirstActor("cycles");
+                Cycle cycle2 = (Cycle)cast.GetSecondActor("cycles");
+                List<Actor> segments1 = cycle1.GetSegments();
+                List<Actor> segments2 = cycle2.GetSegments();
+                // Food food = (Food)cast.GetFirstActor("food");
 
                 // create a "game over" message
                 int x = Constants.MAX_X / 2;
@@ -93,11 +135,31 @@ namespace Unit05.Game.Scripting
                 cast.AddActor("messages", message);
 
                 // make everything white
-                foreach (Actor segment in segments)
+                foreach (Actor segment in segments1)
                 {
                     segment.SetColor(Constants.WHITE);
                 }
-                food.SetColor(Constants.WHITE);
+                foreach (Actor segment in segments2)
+                {
+                    segment.SetColor(Constants.WHITE);
+                }
+                // food.SetColor(Constants.WHITE);
+            }
+            else
+            {
+                if (timeThrough == 4)
+                {
+                    Cycle cycle = (Cycle)cast.GetFirstActor("cycles");
+                    cycle.GrowTail(1);
+                    cycle = (Cycle)cast.GetSecondActor("cycles");
+                    cycle.GrowTail(1);
+
+                    timeThrough = 0;
+                }
+                else
+                {
+                    timeThrough++;
+                }
             }
         }
 

@@ -10,7 +10,7 @@ namespace Unit05.Game.Scripting
     //    inherit from the Action class.
     public class MoveActorsAction : Action
     {
-
+        private int timeThrough = 0;
     /// <summary>
     /// <para>An update action that moves all the actors.</para>
     /// <para>
@@ -40,6 +40,7 @@ namespace Unit05.Game.Scripting
             {
                 actor.MoveNext();
             }
+            
         }
 
     }
