@@ -1,4 +1,5 @@
-﻿using Unit05.Game.Casting;
+﻿using Unit05.Game;
+using Unit05.Game.Casting;
 using Unit05.Game.Directing;
 using Unit05.Game.Scripting;
 using Unit05.Game.Services;
@@ -21,8 +22,8 @@ namespace Unit05
             // create the cast
             Cast cast = new Cast();
             // cast.AddActor("food", new Food());
-            cast.AddActor("cycles", new Cycle(300));
-            cast.AddActor("cycles", new Cycle(600));
+            cast.AddActor("cycles", new Cycle(300, Constants.RED));
+            cast.AddActor("cycles", new Cycle(600, Constants.GREEN));
             cast.AddActor("score", new Score());
 
             // create the services
