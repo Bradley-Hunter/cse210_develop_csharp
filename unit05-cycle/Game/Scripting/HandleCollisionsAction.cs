@@ -31,29 +31,9 @@ namespace Unit05.Game.Scripting
         {
             if (isGameOver == false)
             {
-                // HandleFoodCollisions(cast);
                 HandleBetweenCyclesCollisions(cast);
                 HandleSegmentCollisions(cast);
                 HandleGameOver(cast);
-            }
-        }
-
-        /// <summary>
-        /// Updates the score nd moves the food if the snake collides with it.
-        /// </summary>
-        /// <param name="cast">The cast of actors.</param>
-        private void HandleFoodCollisions(Cast cast)
-        {
-            Cycle snake = (Cycle)cast.GetFirstActor("cycles");
-            Score score = (Score)cast.GetFirstActor("score");
-            Food food = (Food)cast.GetFirstActor("food");
-
-            if (snake.GetHead().GetPosition().Equals(food.GetPosition()))
-            {
-                int points = food.GetPoints();
-                snake.GrowTail(points);
-                score.AddPoints(points);
-                food.Reset();
             }
         }
 
@@ -122,7 +102,6 @@ namespace Unit05.Game.Scripting
                 Cycle cycle2 = (Cycle)cast.GetSecondActor("cycles");
                 List<Actor> segments1 = cycle1.GetSegments();
                 List<Actor> segments2 = cycle2.GetSegments();
-                // Food food = (Food)cast.GetFirstActor("food");
 
                 // create a "game over" message
                 int x = Constants.MAX_X / 2;
@@ -143,7 +122,6 @@ namespace Unit05.Game.Scripting
                 {
                     segment.SetColor(Constants.WHITE);
                 }
-                // food.SetColor(Constants.WHITE);
             }
             else
             {

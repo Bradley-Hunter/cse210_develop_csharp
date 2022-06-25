@@ -24,8 +24,6 @@ namespace Unit05.Game.Scripting
         /// <inheritdoc/>
         public void Execute(Cast cast, Script script)
         {
-            // List<Actor> snakes = (Actor)cast.GetActors("cycles");
-
             Cycle cycle1 = (Cycle)cast.GetFirstActor("cycles");
             Cycle cycle2 = (Cycle)cast.GetSecondActor("cycles");
 
@@ -39,26 +37,9 @@ namespace Unit05.Game.Scripting
             videoService.DrawActors(segments);
             }
 
-            // Actor score1 = cast.GetFirstActor("score");
-            // Actor score2 = cast.GetSecondActor("score");
-
-            // List<Actor> scores = new List<Actor>();
-            // scores.Add(score1);
-            // scores.Add(score2);
-
-            // foreach(Score score in scores)
-            // {
-            // videoService.DrawActor(score);
-            
-            // }
-
-
-
-            // Actor food = cast.GetFirstActor("food");
             List<Actor> messages = cast.GetActors("messages");
             
             videoService.ClearBuffer();
-            // videoService.DrawActor(food);
             videoService.DrawActors(messages);
             videoService.FlushBuffer();
         }
